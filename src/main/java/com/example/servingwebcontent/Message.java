@@ -13,6 +13,9 @@ public class Message {
 
     private String text;
 
+    public Message() {
+    }
+
     public Integer getId() {
         return id;
     }
