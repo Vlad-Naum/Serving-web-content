@@ -5,8 +5,19 @@
 </head>
 <body>
 <p>Список сообщений:</p>
-<form>
-
-</form>>
+<table>
+    <thead>
+    <tr>
+        <th> id </th>
+        <th> text </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mess : ${messages}">
+        <td><span th:text="${mess.id}"> Title </span></td>
+        <td><span th:text="${mess.text}"> </span></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
