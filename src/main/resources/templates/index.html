@@ -1,12 +1,14 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<input name="Написать сообщение." type="text" />
-<input type="submit" value="Добавить" />
+<form method="post" th:action="@{/add}">
+    <input name="text" type="text" />
+    <input type="submit" value="Добавить" />
+</form>
 <p><a href="/all">Список сообщений.</a></p>
 <p>Get your greeting <a href="/greeting">here</a></p>
 <p><a href="/bye">End</a></p>
