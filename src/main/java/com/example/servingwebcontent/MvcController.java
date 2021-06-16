@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.Iterator;
 
 @Controller
-//@RequestMapping(path="/main") // This means URL's start with /demo (after Application path)
 
 public class MvcController {
     @Autowired
@@ -42,6 +42,25 @@ public class MvcController {
         messageRepo.save(message);
         System.out.println("Yes");
         return "index";
+    }
+
+    @GetMapping("/delete")
+    public String delete(Model model) {
+
+        return "delete";
+    }
+
+    @PostMapping("/delete")
+    public String deleteMessage(@ModelAttribute("text") String text){
+        int id = Integer.parseInt(text);
+        Iterable<Message> messages = messageRepo.findAll();
+        for (Message message : messages) {
+            if(message.getId() == id){
+                messageRepo.delete(message);
+                break;
+            }
+        }
+        return "delete";
     }
 
 }
