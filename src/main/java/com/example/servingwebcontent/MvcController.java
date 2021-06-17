@@ -46,21 +46,24 @@ public class MvcController {
 
     @GetMapping("/delete")
     public String delete(Model model) {
-
         return "delete";
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/all")
     public String deleteMessage(@ModelAttribute("text") String text){
-        int id = Integer.parseInt(text);
-        Iterable<Message> messages = messageRepo.findAll();
-        for (Message message : messages) {
-            if(message.getId() == id){
-                messageRepo.delete(message);
-                break;
+        try {
+            int id = Integer.parseInt(text);
+            Iterable<Message> messages = messageRepo.findAll();
+            for (Message message : messages) {
+                if(message.getId() == id){
+                    messageRepo.delete(message);
+                    break;
+                }
             }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
-        return "delete";
+        return "all";
     }
 
 }
