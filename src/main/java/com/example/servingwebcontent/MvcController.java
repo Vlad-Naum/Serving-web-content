@@ -6,9 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
-import java.util.Iterator;
-
 @Controller
 
 public class MvcController {
@@ -22,32 +19,16 @@ public class MvcController {
         return "all";
     }
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "greeting";
-    }
-
-    @GetMapping("/bye")
-    public String bye(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "bye";
-    }
-
     @PostMapping("/add")
     public String addNewMessage (@ModelAttribute("text") String text){
         System.out.println(text);
         Message message = new Message();
         message.setText(text);
         messageRepo.save(message);
-        System.out.println("Yes");
+        System.out.println("Message add.");
         return "index";
     }
 
-    @GetMapping("/delete")
-    public String delete(Model model) {
-        return "delete";
-    }
 
     @PostMapping("/all")
     public String deleteMessage(@ModelAttribute("text") String text){
@@ -66,4 +47,9 @@ public class MvcController {
         return "all";
     }
 
+    @GetMapping("/bye")
+    public String bye(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
+        model.addAttribute("name", name);
+        return "bye";
+    }
 }
